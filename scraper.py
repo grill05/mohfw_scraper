@@ -7,6 +7,7 @@ if __name__=='__main__':
   options.add_argument("--headless")
   driver = webdriver.Chrome(chrome_options=options)  
   driver.get('https://www.mohfw.gov.in/')
+  driver.find_element_by_xpath('//a[@href="#state-data"]').click()
   htm=driver.page_source
   a=open('test.html','w');a.write(htm);a.close()
   
