@@ -45,6 +45,8 @@ if __name__=='__main__':
     t=t[0]
     chunks=[];states=[i.lower() for i in list(state_code_to_name.values())]
     state_data={}
+    
+    a=open('data.csv','a')
     for idx in range(36):
       chunk=t('td')[8*idx:8*(idx+1)]
       state_name=chunk[1].text)
@@ -52,6 +54,10 @@ if __name__=='__main__':
       state_recovered=int(chunk[4].text)
       state_deaths=int(chunk[6].text)
       state_cases=state_active+state_recovered+state_deaths
+      info='%s,%s,%d,%d,%d,%d'
+      a.write(info+'\n' %(state_name,date_str,state_cases,state_recovered,state_active,state_deaths)
+      print(info)
+    a.close()
   else: 
     print('Could not find element containing state-wise cases data!!')
     
