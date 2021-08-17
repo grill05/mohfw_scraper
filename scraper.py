@@ -49,10 +49,10 @@ if __name__=='__main__':
     a=open('data.csv','a')
     for idx in range(36):
       chunk=t('td')[8*idx:8*(idx+1)]
-      state_name=chunk[1].text)
-      state_active=int(chunk[2].text)
-      state_recovered=int(chunk[4].text)
-      state_deaths=int(chunk[6].text)
+      state_name=chunk[1].text.strip()
+      state_active=int(chunk[2].text.strip())
+      state_recovered=int(chunk[4].text.strip())
+      state_deaths=int(chunk[6].text.strip())
       state_cases=state_active+state_recovered+state_deaths
       info='%s,%s,%d,%d,%d,%d'
       a.write(info+'\n' %(state_name,date_str,state_cases,state_recovered,state_active,state_deaths)
