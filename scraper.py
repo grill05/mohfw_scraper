@@ -54,8 +54,8 @@ if __name__=='__main__':
       state_recovered=int(chunk[4].text.strip())
       state_deaths=int(chunk[6].text.strip())
       state_cases=state_active+state_recovered+state_deaths
-      info='%s,%s,%d,%d,%d,%d'
-      a.write(info+'\n' %(state_name,date_str,state_cases,state_recovered,state_active,state_deaths))
+      info='%s,%s,%d,%d,%d,%d' %(state_name,date_str,state_cases,state_recovered,state_active,state_deaths)
+      a.write(info+'\n' )
       print(info)
     a.close()
   else: 
