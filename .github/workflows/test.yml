@@ -6,7 +6,7 @@ on:
       #~ - master
   #~ pull_request:
   schedule:
-    - cron: "10 06 * * *"
+    - cron: "05 06 * * *"
 
 jobs:
   build:
