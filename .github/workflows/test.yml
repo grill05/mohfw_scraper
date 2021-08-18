@@ -4,8 +4,8 @@ on:
   schedule:
   - cron:  '12 6 * * *'
 #~ on:
-  #~ push:
-    #~ branches:
+  push:
+    branches:
       #~ - master
   #~ pull_request:
   
