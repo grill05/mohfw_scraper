@@ -49,7 +49,7 @@ if __name__=='__main__':
   dont_update_data_csv=False
   if date_str in dates: 
     dont_update_data_csv=True
-    print('Data for %s already exists in csv!!\nOnly printing, not modifying csv!!' %(date_str))
+    print('----------\n\nData for %s already exists in csv!!\nOnly printing, not modifying csv!!\n\n----------\n\n' %(date_str))
   
   #actually parse the mohfw htm
   if t: 
