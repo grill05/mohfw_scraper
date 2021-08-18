@@ -37,7 +37,7 @@ if __name__=='__main__':
   a=open('test.html','w');a.write(htm);a.close()
   
   #parse html file
-  soup=bs4.BeautifulSoup(htm)
+  soup=bs4.BeautifulSoup(htm,'html.parser')
   t=soup('tbody')
   
   date=datetime.datetime.now();date_str=date.strftime('%d/%m/%Y')
