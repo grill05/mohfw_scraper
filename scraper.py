@@ -1,5 +1,5 @@
 from selenium import webdriver;
-import os,requests,time,bs4,datetime
+import os,requests,time,bs4,datetime,csv
 
 state_code_to_name={"an" : "Andaman and Nicobar Islands" ,"ap" : "Andhra Pradesh" ,
                     "ar" : "Arunachal Pradesh" ,"as" : "Assam" ,
@@ -41,10 +41,22 @@ if __name__=='__main__':
   t=soup('tbody')
   
   date=datetime.datetime.now();date_str=date.strftime('%d/%m/%Y')
+  
+  #check if data for given date already exists in csv. Update only if data doesn't exist
+  a=open('data.csv');r=csv.reader(a);info=[i for i in r];a.close()
+  dates=list(set([i[1] for i in info[1:]]));dates.sort()
+  
+  dont_update_data_csv=False
+  if date_str in dates: 
+    dont_update_data_csv=True
+    print('Data for %s already exists in csv!!\nOnly printing, not modifying csv!!' %(date_str))
+  
+  #actually parse the mohfw htm
   if t: 
     t=t[0]
     chunks=[];states=[i.lower() for i in list(state_code_to_name.values())]
     state_data={}
+    
     
     a=open('data.csv','a')
     for idx in range(36):
@@ -55,7 +67,8 @@ if __name__=='__main__':
       state_deaths=int(chunk[6].text.strip())
       state_cases=state_active+state_recovered+state_deaths
       info='%s,%s,%d,%d,%d,%d' %(state_name,date_str,state_cases,state_recovered,state_active,state_deaths)
-      a.write(info+'\n' )
+      if not dont_update_data_csv:
+        a.write(info+'\n' )
       print(info)
     a.close()
   else: 

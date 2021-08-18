@@ -6,7 +6,9 @@ on:
 #~ on:
   push:
     branches:
-      #~ - master
+      - master
+    paths-ignore:
+      - 'data.csv'
   #~ pull_request:
   
 
